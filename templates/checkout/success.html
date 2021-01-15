@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Your payment succeeded{% endblock title %}
+
+{% block content %}
+<h4>
+  Payment succeeded
+</h4>
+<div class="sr-section completed-view">
+    <button onclick="window.location.href = '/';">Restart demo</button>
+</div>
+<div class="sr-content">
+    <div class="pasha-image-stack">
+        <img src="https://picsum.photos/280/320?random=1" width="140" height="160"/>
+        <img src="https://picsum.photos/280/320?random=2" width="140" height="160"/>
+        <img src="https://picsum.photos/280/320?random=3" width="140" height="160"/>
+        <img src="https://picsum.photos/280/320?random=4" width="140" height="160"/>
+    </div>
+</div>
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var sessionId = urlParams.get("session_id")
+    if (sessionId) {
+        fetch("/checkout-session?sessionId=" + sessionId).then(function(result){
+        return result.json()
+        }).then(function(session){
+            var sessionJSON = JSON.stringify(session, null, 2);
+        document.querySelector("pre").textContent = sessionJSON;
+        }).catch(function(err){
+            console.log('Error when fetching Checkout session', err);
+        });
+    }
+</script>
+{% endblock content %}
