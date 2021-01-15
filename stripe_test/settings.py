@@ -11,15 +11,15 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import environ
-import os
+import environ #NEW
+import os #NEW
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # django-environから環境変数を読み込む
-env = environ.Env()
-env.read_env(os.path.join(BASE_DIR, '.env'))
+env = environ.Env() #NEW
+env.read_env(os.path.join(BASE_DIR, '.env'))#NEW
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,8 +37,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'stripe',#追加
-    'checkout.apps.CheckoutConfig', # 自作 チェックアウト
+    'stripe',#追加 #NEW
+    'checkout.apps.CheckoutConfig', # 自作 チェックアウト #NEW
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'stripe_test.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')], #デフォルトから変更
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], #デフォルトから変更 #NEW
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] #NEW
 
-STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
-STRIPE_PUBLISHABLE_KEY = env('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY') #NEW
+STRIPE_PUBLISHABLE_KEY = env('STRIPE_PUBLISHABLE_KEY') #NEW
