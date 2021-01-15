@@ -22,6 +22,11 @@ class CanceledView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name )
 
+class IndexView(generic.TemplateView):
+    template_name = "checkout/checkout_test.html"
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name )
+
 @csrf_exempt
 def onetime_payment_checkout(request):
     if request.method == 'POST':
@@ -62,8 +67,3 @@ def stripe_config(request):
         }
 
         return JsonResponse(stripe_config, safe=False)
-
-class IndexView(generic.TemplateView):
-    template_name = "checkout/checkout_test.html"
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name )
